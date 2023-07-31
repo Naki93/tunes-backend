@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const fetch = require('isomorphic-fetch');
-const rateLimit = require('express-rate-limit');
+
 
 
 
@@ -17,15 +17,6 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
-
-// Set rate limit for requests from the same IP address
-const limiter = rateLimit({
-  windowMs:  60 * 1000, // 15 minutes
-  max: 20, // 100 requests per windowMs
-});
-
-// Apply the rate limiter to all requests
-app.use(limiter);
 
 let favorites = [];
 
